@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/data/neo4j
+            http://www.springframework.org/schema/data/neo4j/spring-neo4j.xsd">
+
+	<neo4j:config graphDatabaseService="graphDatabaseService" />
+	<bean id="graphDatabaseService"
+		class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
+		<constructor-arg index="0" value="http://localhost:7474/db/data" />
+	</bean>
+	<bean id="maruPekeAI" class="com.omotenashimind.labo.neo4j.MaruPekeAI">
+		<property name="graphDatabase" ref="graphDatabaseService" />
+	</bean>
+
+</beans>
